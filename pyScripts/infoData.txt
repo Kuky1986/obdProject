@@ -4,3 +4,19 @@ Written as a %:
 - Throttle Position
 - Timing Advance 
 - Equiv Ratio 
+
+
+{ _id: 'car1', count: 13617 },
+{ _id: 'car11', count: 7485 },
+{ _id: 'car6', count: 6184 }, 
+{ _id: 'car9', count: 6018 }, 
+{ _id: 'car8', count: 5574 }, 
+{ _id: 'car4', count: 2920 },
+{ _id: 'car13', count: 2060 },
+{ _id: 'car12', count: 1866 },
+{ _id: 'car3', count: 903 },
+{ _id: 'car7', count: 507 },
+{ _id: 'car14', count: 180 },
+{ _id: 'car2', count: 138 },
+{ _id: 'car5', count: 55 },
+{ _id: 'car10', count: 7 }
