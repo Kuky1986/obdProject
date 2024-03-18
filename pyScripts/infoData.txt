@@ -1,0 +1,6 @@
+Written as a %:
+- Fuel level 
+- Engine load 
+- Throttle Position
+- Timing Advance 
+- Equiv Ratio 

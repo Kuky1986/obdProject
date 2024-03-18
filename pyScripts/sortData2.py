@@ -1,28 +1,20 @@
 import csv
 
-# Input and output file paths
-input_file = 'data_v1.csv'
-output_file = 'data_v2.csv'
+# Define the file paths
+input_file = 'data_v2.csv'
+output_file = 'data_v3.csv'
 
-def process_csv(input_file, output_file):
+# Function to update the specified column
+def update_column(input_file, output_file, column_index, value_to_replace, replacement_value):
     with open(input_file, 'r', newline='') as infile, open(output_file, 'w', newline='') as outfile:
-        reader = csv.DictReader(infile)
-        fieldnames = reader.fieldnames
+        reader = csv.reader(infile)
+        writer = csv.writer(outfile)
 
-        # Write header to the output file
-        writer = csv.DictWriter(outfile, fieldnames=fieldnames)
-        writer.writeheader()
-
-        # Process each row
         for row in reader:
-            # Convert '58,4%' to '58.4' in the 'FUEL_LEVEL' column
-            row['FUEL_LEVEL'] = float(row['FUEL_LEVEL'].replace(',', '.')[:-1])
+            if row:  # Check if the row is not empty
+                if row[column_index] == value_to_replace:
+                    row[column_index] = replacement_value
+                writer.writerow(row)
 
-            # Convert '33,30%' to '33.30' in the 'ENGINE_LOAD' column
-            row['ENGINE_LOAD'] = float(row['ENGINE_LOAD'].replace(',', '.'))
-
-            # Write the modified row to the output file
-            writer.writerow(row)
-
-# Process the CSV file
-process_csv(input_file, output_file)
+# Call the function to update the specified column
+update_column(input_file, output_file, 5, 's', True)
