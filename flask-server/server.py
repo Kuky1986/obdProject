@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_pymongo import PyMongo
 from bson.json_util import dumps
+import requests
 
 app = Flask(__name__)
 app.config["MONGO_URI"] = "mongodb://localhost:27017/obd2"
@@ -54,7 +55,23 @@ def get_dtc():
     dtc_data = list(unique_dtcs)
     return jsonify(dtc_data), 200
 
+@app.route('/api/external', methods=['POST'])
+def handle_external_api_call():
+    # Get the DTC code from the request
+    dtc = request.json.get('dtc')
 
+    # Make API call to external service
+    try:
+        # Include the DTC code in the URL
+        url = f'https://car-code.p.rapidapi.com/obd2/{dtc}'
+        
+        response = requests.get(url,
+                                headers={'X-RapidAPI-Key': '33088fb2f4mshbeffa746658a86dp1c3037jsnebb1747af537', 'X-RapidAPI-Host': 'car-code.p.rapidapi.com'})
+        response.raise_for_status()  # Raise an exception for HTTP errors
+        external_data = response.json()  # Parse the JSON response
+        return jsonify(external_data), 200
+    except requests.exceptions.RequestException as e:
+        return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
