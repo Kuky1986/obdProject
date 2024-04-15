@@ -19,15 +19,15 @@ def get_data():
         query['VEHICLE_ID'] = car_id
 
     fields_to_retrieve = {
-    'VEHICLE_ID': 1,
-    'MARK': 1,
-    'MODEL': 1,
-    'CAR_YEAR': 1,
-    'ENGINE_POWER': 1,
-    'FUEL_TYPE': 1,
-    'AUTOMATIC': 1,
-    '_id': 0
-}
+        'VEHICLE_ID': 1,
+        'MARK': 1,
+        'MODEL': 1,
+        'CAR_YEAR': 1,
+        'ENGINE_POWER': 1,
+        'FUEL_TYPE': 1,
+        'AUTOMATIC': 1,
+        '_id': 0
+    }
 
 
     cursor = mongo.db.obd_scans.find(query, fields_to_retrieve).skip((page - 1) * per_page).limit(per_page)
@@ -80,6 +80,30 @@ def handle_external_api_call():
         return jsonify(external_data), 200
     except requests.exceptions.RequestException as e:
         return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/enginecoolanttemperature', methods=['GET'])
+def get_engine_coolant_temperature():
+    car_id = request.args.get('carId')  # Get carId from query parameters
+    logging.info(f"Received car ID: {car_id}")
+
+    query = {'VEHICLE_ID': car_id} if car_id else {}
+
+    engine_coolant_data = []
+    engine_coolant_cursor = mongo.db.obd_scans.find(query, {'ENGINE_COOLANT_TEMP': 1, '_id': 0})
+    for doc in engine_coolant_cursor:
+        try:
+            engine_coolant_data.append(doc['ENGINE_COOLANT_TEMP'])
+        except KeyError:
+            # Skip documents where the field is missing
+            pass
+
+    logging.info(f"Engine coolant data: {engine_coolant_data}")
+    return jsonify(engine_coolant_data), 200
+
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
