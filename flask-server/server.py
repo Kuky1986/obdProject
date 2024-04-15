@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request
 from flask_pymongo import PyMongo
 from bson.json_util import dumps
 import requests
+import logging
 
 app = Flask(__name__)
 app.config["MONGO_URI"] = "mongodb://localhost:27017/obd2"
@@ -37,6 +38,7 @@ def get_data():
 @app.route('/api/dtc', methods=['GET'])
 def get_dtc():
     car_id = request.args.get('carId')  # Get carId from query parameters
+    logging.info(f"Received car ID: {car_id}")
 
     query = {}
     if car_id:
@@ -50,10 +52,16 @@ def get_dtc():
             if isinstance(dtc_value, list):  # Check if TROUBLE_CODES is a list
                 unique_dtcs.update(dtc_value)  # Add all TROUBLE_CODES in the list
             else:
-                unique_dtcs.add(dtc_value)  # Add single TROUBLE_CODES
+                # Split combined DTCs into individual codes
+                combined_dtcs = [dtc_value[i:i+5] for i in range(0, len(dtc_value), 5)]  # Split every 5 characters
+                unique_dtcs.update(combined_dtcs)  # Add individual DTCs to the set
+
+    logging.info(f"Found DTCs: {unique_dtcs}")
+
     # Convert set to list and return as JSON
     dtc_data = list(unique_dtcs)
     return jsonify(dtc_data), 200
+
 
 @app.route('/api/external', methods=['POST'])
 def handle_external_api_call():

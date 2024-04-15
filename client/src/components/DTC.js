@@ -5,37 +5,36 @@ const DTC = () => {
   const [carId, setCarId] = useState('');
   const [dtcData, setDtcData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null); // State for error message
-  const [dtcInfo, setDtcInfo] = useState(null); // State for DTC information
+  const [error, setError] = useState(null);
+  const [dtcInfo, setDtcInfo] = useState({});
 
   const handleCarIdChange = (event) => {
     setCarId(event.target.value);
   };
 
   const fetchDTCs = async () => {
-  setLoading(true);
-  setError(null); // Reset error state
-  setDtcInfo(null); // Reset dtcInfo state
-  try {
-    const response = await axios.get(`/api/dtc?carId=${carId}`);
-    console.log(response.data); // Log the response data to see its structure
-    setDtcData(response.data);
-  } catch (error) {
-    console.error('Error fetching DTC data:', error);
-  }
-  setLoading(false);
-};
+    setLoading(true);
+    setError(null);
+    setDtcInfo({});
+    try {
+      const response = await axios.get(`/api/dtc?carId=${carId}`);
+      setDtcData(response.data);
+    } catch (error) {
+      console.error('Error fetching DTC data:', error);
+    }
+    setLoading(false);
+  };
 
   const handleDTCButtonClick = async (dtc) => {
     setLoading(true);
-    setError(null); // Reset error state
+    setError(null);
     try {
       const response = await axios.post('/api/external', { dtc: dtc });
-      console.log(response.data); // Log the response data from the external API
-      setDtcInfo(response.data); // Set the DTC information state
+      const responseData = response.data;
+      setDtcInfo(prevState => ({ ...prevState, [dtc]: responseData }));
     } catch (error) {
       console.error('Error fetching data from external API:', error.response.data);
-      setError('DTC not found. Please try again with a different code.'); // Set error state with a user-friendly message
+      setDtcInfo(prevState => ({ ...prevState, [dtc]: { error: `No DTC info for ${dtc}` } }));
     }
     setLoading(false);
   };
@@ -50,37 +49,56 @@ const DTC = () => {
       </div>
       {loading ? (
         <p>Loading...</p>
-      ) : error ? ( // Display error message if error state is set
+      ) : error ? (
         <p>{error}</p>
-      ) : dtcInfo ? ( // Display DTC information if available
-        <div>
-          <h2>DTC Information:</h2>
-          <p>Code: {dtcInfo.code}</p>
-          <p>Definition: {dtcInfo.definition}</p>
-          <p>Possible Causes:</p>
-          <ul>
-            {dtcInfo.cause.map((cause, index) => (
-              <li key={index}>{cause}</li>
-            ))}
-          </ul>
-        </div>
       ) : (
-        <div>
-          <h2>DTC Codes:</h2>
-          <ul>
-            {dtcData.map((dtc, index) => (
-              <li key={index}>
-                <button onClick={() => handleDTCButtonClick(dtc)}>{dtc}</button>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <>
+          <div>
+            <h2>DTC Codes:</h2>
+            <ul>
+              {dtcData.map((dtc, index) => (
+                <li key={index}>
+                  <button onClick={() => handleDTCButtonClick(dtc)}>{dtc}</button>
+                </li>
+              ))}
+            </ul>
+          </div>
+          {Object.keys(dtcInfo).map((dtc, index) => (
+            <div key={index}>
+              {dtcInfo[dtc] && !dtcInfo[dtc].error && (
+                <div>
+                  <h2>DTC Information:</h2>
+                  <p>Code: {dtc}</p>
+                  <p>Definition: {dtcInfo[dtc].definition}</p>
+                  <p>Possible Causes:</p>
+                  <ul>
+                    {dtcInfo[dtc].cause.map((cause, index) => (
+                      <li key={index}>{cause}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {dtcInfo[dtc] && dtcInfo[dtc].error && (
+                <p>{dtcInfo[dtc].error}</p>
+              )}
+            </div>
+          ))}
+        </>
       )}
     </div>
   );
 };
 
 export default DTC;
+
+
+
+
+
+
+
+
+
 
 
 

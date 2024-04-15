@@ -1,13 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 const Data = () => {
   const [carData, setCarData] = useState([]);
   const [carId, setCarId] = useState('');
-
-  useEffect(() => {
-    fetchData();
-  }, [carId]);
 
   const fetchData = async () => {
     try {
@@ -16,6 +12,10 @@ const Data = () => {
     } catch (error) {
       console.error('Error fetching data:', error);
     }
+  };
+
+  const handleFetchData = () => {
+    fetchData();
   };
 
   const handleCarIdChange = (event) => {
@@ -28,6 +28,7 @@ const Data = () => {
       <div>
         <label>Enter Car ID:</label>
         <input type="text" value={carId} onChange={handleCarIdChange} />
+        <button onClick={handleFetchData}>Fetch Data</button>
       </div>
       {carData.length > 0 && (
         <div>
@@ -45,6 +46,7 @@ const Data = () => {
 };
 
 export default Data;
+
 
 
 
