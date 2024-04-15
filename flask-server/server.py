@@ -93,13 +93,18 @@ def get_engine_coolant_temperature():
     engine_coolant_cursor = mongo.db.obd_scans.find(query, {'ENGINE_COOLANT_TEMP': 1, '_id': 0})
     for doc in engine_coolant_cursor:
         try:
-            engine_coolant_data.append(doc['ENGINE_COOLANT_TEMP'])
+            engine_coolant_temp = doc['ENGINE_COOLANT_TEMP']
+            if isinstance(engine_coolant_temp, list):
+                engine_coolant_data.extend(engine_coolant_temp)
+            else:
+                engine_coolant_data.append(engine_coolant_temp)
         except KeyError:
             # Skip documents where the field is missing
             pass
 
     logging.info(f"Engine coolant data: {engine_coolant_data}")
     return jsonify(engine_coolant_data), 200
+
 
 
 
