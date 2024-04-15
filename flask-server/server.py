@@ -106,7 +106,30 @@ def get_engine_coolant_temperature():
     return jsonify(engine_coolant_data), 200
 
 
+@app.route('/api/intakemanifoldpressure', methods=['GET'])
+def get_engine_intake_comparison():
+    car_id = request.args.get('carId')  # Get carId from query parameters
+    logging.info(f"Received car ID: {car_id}")
 
+    query = {'VEHICLE_ID': car_id} if car_id else {}
+
+    data = []
+    cursor = mongo.db.obd_scans.find(query, {'INTAKE_MANIFOLD_PRESSURE': 1, 'ENGINE_LOAD': 1, '_id': 0})
+    for doc in cursor:
+        try:
+            intake_pressure = doc.get('INTAKE_MANIFOLD_PRESSURE')
+            engine_load = doc.get('ENGINE_LOAD')
+            if intake_pressure is not None and engine_load is not None:
+                data.append({'INTAKE_MANIFOLD_PRESSURE': intake_pressure, 'ENGINE_LOAD': engine_load})
+        except KeyError:
+            # Skip documents where the fields are missing
+            pass
+
+    # Sort data based on ENGINE_LOAD
+    sorted_data = sorted(data, key=lambda x: x['ENGINE_LOAD'])
+
+    logging.info(f"Engine intake comparison data: {sorted_data}")
+    return jsonify(sorted_data), 200
 
 
 
