@@ -12,6 +12,7 @@ const Home = () => {
       <div>
         <Link to="/data"><button>Data</button></Link>
         <Link to="/dtc"><button>DTC</button></Link>
+        <Link to="/engineHealth"><button>Engine Health</button></Link>
         {/* Add more buttons for other pages/components */}
       </div>
     </div>
