@@ -134,7 +134,7 @@ def get_engine_intake_comparison():
 
 from flask import jsonify
 
-@app.route('/api/mafdata', methods=['GET'])
+@app.route('/api/mafdata', methods=['GET']) # NOT GETTING THE DATA
 def get_maf_engine_comparison():
     try:
         car_id = request.args.get('carId')  # Get carId from query parameters
@@ -165,6 +165,19 @@ def get_maf_engine_comparison():
         logging.error(f"Error fetching MAF engine comparison data: {e}")
         return jsonify({'error': 'An error occurred while fetching the data'}), 500
 
+
+@app.route('/api/max_engine_runtime', methods=['GET'])
+def get_max_engine_runtime():
+    car_id = request.args.get('carId')  # Get carId from query parameters
+
+    # Find the document with the maximum engine runtime for the specified carId
+    max_runtime_doc = collection.find_one({'VEHICLE_ID': car_id}, sort=[('ENGINE_RUNTIME', -1)])
+
+    if max_runtime_doc:
+        max_runtime = max_runtime_doc.get('ENGINE_RUNTIME')
+        return jsonify({'carId': car_id, 'maxEngineRuntime': max_runtime}), 200
+    else:
+        return jsonify({'error': 'No data found for the specified carId'}), 404
 
 if __name__ == '__main__':
     app.run(debug=True)

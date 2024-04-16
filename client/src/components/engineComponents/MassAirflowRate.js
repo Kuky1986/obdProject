@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import Chart from 'chart.js/auto';
 
-const MassAirflowRate = () => {
+const MassAirflowRate = ({ carId }) => {
   const [mafEngineData, setMafEngineData] = useState([]);
   const [chartInstance, setChartInstance] = useState(null);
   const [selectedChart, setSelectedChart] = useState(null);
 
   const fetchData = async () => {
-    try {
-      // Fetch data only if mafEngineData is empty or if it needs to be updated
-      if (!mafEngineData.length) {
-        const response = await axios.get(`/api/mafdata?carId=car7`);
+      try {
+        if (carId) {
+          const response = await axios.get(`/api/mafdata?carId=${carId}`);
         console.log(response.data);
         setMafEngineData(response.data);
       }
