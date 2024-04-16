@@ -7,6 +7,7 @@ import logging
 app = Flask(__name__)
 app.config["MONGO_URI"] = "mongodb://localhost:27017/obd2"
 mongo = PyMongo(app)
+collection = mongo.db.obd_scans  # Define the collection variable
 
 @app.route('/api/data', methods=['GET'])
 def get_data():
@@ -131,6 +132,38 @@ def get_engine_intake_comparison():
     logging.info(f"Engine intake comparison data: {sorted_data}")
     return jsonify(sorted_data), 200
 
+from flask import jsonify
+
+@app.route('/api/mafdata', methods=['GET'])
+def get_maf_engine_comparison():
+    try:
+        car_id = request.args.get('carId')  # Get carId from query parameters
+        logging.info(f"Received car ID: {car_id}")
+
+        query = {'VEHICLE_ID': car_id} if car_id else {}
+
+        logging.info("Executing database query...")
+        data = []
+        cursor = mongo.db.obd_scans.find(query, {'MAF': 1, 'ENGINE_LOAD': 1, '_id': 0})
+        
+        for doc in cursor:
+            try:
+                maf = doc.get('MAF')
+                engine_load = doc.get('ENGINE_LOAD')
+                if maf is not None and engine_load is not None:
+                    data.append({'MAF': maf, 'ENGINE_LOAD': engine_load})
+            except KeyError:
+                # Skip documents where the fields are missing
+                pass
+        
+        # Sort data based on ENGINE_LOAD
+        sorted_data = sorted(data, key=lambda x: x['ENGINE_LOAD'])
+
+        logging.info(f"Engine MAF comparison data: {sorted_data}")
+        return jsonify(sorted_data), 200
+    except Exception as e:
+        logging.error(f"Error fetching MAF engine comparison data: {e}")
+        return jsonify({'error': 'An error occurred while fetching the data'}), 500
 
 
 if __name__ == '__main__':
