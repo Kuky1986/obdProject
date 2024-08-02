@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Navbar from './styleComponents/Navbar';
+import './DTC.css'; // Import the CSS file
 
 const DTC = () => {
   const [carId, setCarId] = useState('');
@@ -7,6 +9,7 @@ const DTC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [dtcInfo, setDtcInfo] = useState({});
+  const [selectedDTC, setSelectedDTC] = useState('');
 
   const handleCarIdChange = (event) => {
     setCarId(event.target.value);
@@ -21,11 +24,13 @@ const DTC = () => {
       setDtcData(response.data);
     } catch (error) {
       console.error('Error fetching DTC data:', error);
+      setError('Failed to fetch DTC data');
     }
     setLoading(false);
   };
 
   const handleDTCButtonClick = async (dtc) => {
+    setSelectedDTC(dtc);
     setLoading(true);
     setError(null);
     try {
@@ -33,63 +38,78 @@ const DTC = () => {
       const responseData = response.data;
       setDtcInfo(prevState => ({ ...prevState, [dtc]: responseData }));
     } catch (error) {
-      console.error('Error fetching data from external API:', error.response.data);
+      console.error('Error fetching data from external API:', error.response?.data);
       setDtcInfo(prevState => ({ ...prevState, [dtc]: { error: `No DTC info for ${dtc}` } }));
     }
     setLoading(false);
   };
 
   return (
-    <div>
+    <div className="dtc-container">
+      <Navbar />
       <h1>Diagnostic Trouble Codes (DTCs)</h1>
-      <div>
-        <label>Enter Car ID:</label>
-        <input type="text" value={carId} onChange={handleCarIdChange} />
+      <div className="form-container">
+        <label htmlFor="car-id">Enter Car ID:</label>
+        <input
+          id="car-id"
+          type="text"
+          value={carId}
+          onChange={handleCarIdChange}
+        />
         <button onClick={fetchDTCs}>Fetch DTCs</button>
       </div>
       {loading ? (
         <p>Loading...</p>
       ) : error ? (
-        <p>{error}</p>
+        <p className="error-message">{error}</p>
       ) : (
-        <>
-          <div>
-            <h2>DTC Codes:</h2>
-            <ul>
+        <div className="dtc-table-container">
+          <table className="dtc-table">
+            <thead>
+              <tr>
+                <th>DTC Code</th>
+              </tr>
+            </thead>
+            <tbody>
               {dtcData.map((dtc, index) => (
-                <li key={index}>
-                  <button onClick={() => handleDTCButtonClick(dtc)}>{dtc}</button>
-                </li>
+                <tr
+                  key={index}
+                  onClick={() => handleDTCButtonClick(dtc)}
+                  className={dtc === selectedDTC ? 'selected' : ''}
+                >
+                  <td>{dtc}</td>
+                </tr>
               ))}
-            </ul>
+            </tbody>
+          </table>
+          <div className="dtc-details-container">
+            {selectedDTC && dtcInfo[selectedDTC] && !dtcInfo[selectedDTC].error ? (
+              <div className="dtc-details">
+                <h2>DTC Information:</h2>
+                <p><strong>Code:</strong> {selectedDTC}</p>
+                <p><strong>Definition:</strong> {dtcInfo[selectedDTC].definition}</p>
+                <p><strong>Possible Causes:</strong></p>
+                <ul>
+                  {dtcInfo[selectedDTC].cause.map((cause, idx) => (
+                    <li key={idx}>{cause}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : (
+              selectedDTC && dtcInfo[selectedDTC]?.error && (
+                <p>{dtcInfo[selectedDTC].error}</p>
+              )
+            )}
           </div>
-          {Object.keys(dtcInfo).map((dtc, index) => (
-            <div key={index}>
-              {dtcInfo[dtc] && !dtcInfo[dtc].error && (
-                <div>
-                  <h2>DTC Information:</h2>
-                  <p>Code: {dtc}</p>
-                  <p>Definition: {dtcInfo[dtc].definition}</p>
-                  <p>Possible Causes:</p>
-                  <ul>
-                    {dtcInfo[dtc].cause.map((cause, index) => (
-                      <li key={index}>{cause}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {dtcInfo[dtc] && dtcInfo[dtc].error && (
-                <p>{dtcInfo[dtc].error}</p>
-              )}
-            </div>
-          ))}
-        </>
+        </div>
       )}
     </div>
   );
 };
 
 export default DTC;
+
+
 
 
 

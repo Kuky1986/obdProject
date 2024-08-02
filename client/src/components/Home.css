@@ -1,0 +1,40 @@
+/* Home.css */
+
+/* Styling the container for the Home component */
+.home-container {
+    background-color: #858484; /* Lighter background color */
+    color: #ffd700; /* Text color same as link hover color in Navbar */
+    padding: 20px;
+    text-align: center; /* Center-align text */
+    min-height: 100vh; /* Ensure the container covers at least the viewport height */
+  }
+  
+  /* Styling for heading */
+  .home-container h1 {
+    font-size: 2.5rem; /* Adjust font size as needed */
+    margin-bottom: 20px; /* Space below the heading */
+  }
+  
+  /* Styling for paragraphs */
+  .home-container p {
+    font-size: 1.2rem; /* Adjust font size as needed */
+    line-height: 1.5; /* Line height for readability */
+    margin-bottom: 15px; /* Space below paragraphs */
+  }
+  
+  /* Optional: Button styling (if you have any) */
+  .home-container .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff; /* Button text color */
+    background-color: #333; /* Button background color */
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .home-container .btn:hover {
+    background-color: #ffd700; /* Button hover background color */
+  }
+  

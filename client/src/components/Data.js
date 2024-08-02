@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Navbar from './styleComponents/Navbar';
+import './Data.css'; // Import the CSS file
 
 const Data = () => {
   const [carData, setCarData] = useState([]);
@@ -23,22 +25,61 @@ const Data = () => {
   };
 
   return (
-    <div>
-      <h1>Data from MongoDB</h1>
-      <div>
-        <label>Enter Car ID:</label>
-        <input type="text" value={carId} onChange={handleCarIdChange} />
-        <button onClick={handleFetchData}>Fetch Data</button>
-      </div>
+    <div className="data-container">
+      <Navbar />
+      <h1>Find general vehicle data on scanned cars.</h1>
+      <form>
+        <label htmlFor="car-id">Enter scanned Car ID:</label>
+        <input
+          id="car-id"
+          type="text"
+          value={carId}
+          onChange={handleCarIdChange}
+        />
+        <button type="button" onClick={handleFetchData}>
+          Fetch Data
+        </button>
+      </form>
       {carData.length > 0 && (
-        <div>
-          <p>Vehicle ID: {carData[0].VEHICLE_ID}</p>
-          <p>Make: {carData[0].MARK}</p>
-          <p>Model: {carData[0].MODEL}</p>
-          <p>Year: {carData[0].CAR_YEAR}</p>
-          <p>Engine Power: {carData[0].ENGINE_POWER}</p>
-          <p>Fuel Type: {carData[0].FUEL_TYPE}</p>
-          <p>Automatic: {carData[0].AUTOMATIC ? 'Yes' : 'No'}</p>
+        <div className="data-output">
+          <table>
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Vehicle ID</td>
+                <td>{carData[0].VEHICLE_ID}</td>
+              </tr>
+              <tr>
+                <td>Make</td>
+                <td>{carData[0].MARK}</td>
+              </tr>
+              <tr>
+                <td>Model</td>
+                <td>{carData[0].MODEL}</td>
+              </tr>
+              <tr>
+                <td>Year</td>
+                <td>{carData[0].CAR_YEAR}</td>
+              </tr>
+              <tr>
+                <td>Engine Power</td>
+                <td>{carData[0].ENGINE_POWER}</td>
+              </tr>
+              <tr>
+                <td>Fuel Type</td>
+                <td>{carData[0].FUEL_TYPE}</td>
+              </tr>
+              <tr>
+                <td>Automatic</td>
+                <td>{carData[0].AUTOMATIC ? 'Yes' : 'No'}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       )}
     </div>
@@ -46,6 +87,9 @@ const Data = () => {
 };
 
 export default Data;
+
+
+
 
 
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
 import Data from './components/Data';
 import Home from './components/Home'; 
 import DTC from './components/DTC';
@@ -17,6 +16,7 @@ const App = () => {
         {/* Add more routes for other pages/components */}
       </Routes>
     </Router>
+    
   );
 };
 

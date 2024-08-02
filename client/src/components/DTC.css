@@ -1,0 +1,111 @@
+/* DTC.css */
+
+/* Styling the container for the DTC component */
+.dtc-container {
+    background-color: #858484; /* Lighter background color */
+    color: #ffd700; /* Text color consistent with Home */
+    padding: 20px;
+    text-align: center; /* Center-align text */
+    min-height: 100vh; /* Ensure the container covers at least the viewport height */
+  }
+  
+  /* Styling for heading */
+  .dtc-container h1 {
+    font-size: 2.5rem; /* Adjust font size as needed */
+    margin-bottom: 20px; /* Space below the heading */
+  }
+  
+  /* Styling for form elements */
+  .dtc-container .form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .dtc-container label {
+    font-size: 1.2rem; /* Consistent font size */
+    margin-bottom: 8px; /* Space below the label */
+  }
+  
+  .dtc-container input[type="text"] {
+    padding: 10px;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 400px; /* Limit the width */
+  }
+  
+  .dtc-container button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #333; /* Button background color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .dtc-container button:hover {
+    background-color: #ffd700; /* Button hover color */
+  }
+  
+  /* Styling for DTC table */
+  .dtc-table-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 20px;
+  }
+  
+  .dtc-table {
+    border-collapse: collapse;
+    width: 50%;
+    margin-right: 20px; /* Space between table and details */
+  }
+  
+  .dtc-table th, .dtc-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  
+  .dtc-table th {
+    background-color: #333;
+    color: #ffd700;
+  }
+  
+  .dtc-table tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+  }
+  
+  .dtc-table .selected {
+    background-color: #ffd700;
+    color: #333;
+  }
+  
+  /* Styling for DTC details */
+  .dtc-details-container {
+    width: 50%;
+  }
+  
+  .dtc-details {
+    text-align: left;
+    margin-top: 0;
+  }
+  
+  .dtc-details ul {
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+  
+  .dtc-container .error-message {
+    color: red;
+    font-weight: bold;
+  }
+  
+  

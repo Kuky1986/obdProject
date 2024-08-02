@@ -1,0 +1,57 @@
+/* Container styling */
+.engine-coolant-temperature-container {
+    background-color: #858484; /* Light background color */
+    color: #ffd700; /* Dark text color */
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* Button styling */
+  .toggle-button, .info-button { /* Apply the same styling to both buttons */
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 5px; /* Optional: Add margin to space out buttons */
+  }
+  
+  .toggle-button:hover, .info-button:hover {
+    background-color: #ffd700; /* Hover background color */
+  }
+  
+  /* Table styling */
+  .temperature-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+  }
+  
+  .temperature-table th, .temperature-table td {
+    border: 1px solid #aaa4a4;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .temperature-table th {
+    background-color: #333;
+    color: #ffd700;
+  }
+  
+  .temperature-table td.low-temperature {
+    color: blue; /* Color for low temperatures */
+  }
+  
+  .temperature-table td.high-temperature {
+    color: red; /* Color for high temperatures */
+  }
+  
+  .temperature-table tr:nth-child(even) {
+    background-color: #8a8383;
+  }
+  
+  
+  

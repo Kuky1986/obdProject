@@ -1,20 +1,32 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import Navbar from './styleComponents/Navbar';
+import Modal from './styleComponents/Modal'; // Import the Modal component
+import './Home.css'; // Import the CSS file for Home
 
 const Home = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Function to show the modal
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  // Function to hide the modal
+  const hideModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
-    <div>
-      <h1>Welcome to My App!</h1>
-      <p>This is the homepage of our application.</p>
+    <div className="home-container">
+      <Navbar />
+      <h1>OBD Scanner Application</h1>
       <p>Feel free to explore and navigate to other pages using the navigation menu.</p>
-      
-      {/* Navigation buttons */}
-      <div>
-        <Link to="/data"><button>Data</button></Link>
-        <Link to="/dtc"><button>DTC</button></Link>
-        <Link to="/engineHealth"><button>Engine Health</button></Link>
-        {/* Add more buttons for other pages/components */}
-      </div>
+      <button className="btn" onClick={showModal}>About The App</button>
+      <Modal 
+        isOpen={isModalOpen} 
+        onClose={hideModal} 
+        message="Welcome to the OBD Scanner application designed specifically for automotive professionals. This tool enables car mechanics to perform detailed diagnostics by scanning a vehicle's onboard systems. The application provides a comprehensive view of various parameters."
+      />
     </div>
   );
 };

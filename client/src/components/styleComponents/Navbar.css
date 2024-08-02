@@ -1,0 +1,35 @@
+/* Navbar.css */
+
+/* Styling the navbar container */
+nav {
+    background-color: #333;
+    padding: 10px 20px;
+  }
+  
+  /* Styling the list items in the navbar */
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+  }
+  
+  /* Styling the individual list items */
+  nav ul li {
+    margin-right: 20px;
+  }
+  
+  /* Styling the links */
+  nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  /* Styling the links on hover */
+  nav ul li a:hover {
+    color: #ffd700;
+  }
+  
