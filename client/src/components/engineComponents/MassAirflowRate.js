@@ -106,7 +106,7 @@ const MassAirflowRate = ({ carId }) => {
       <Modal
         isOpen={isModalOpen}
         onClose={hideModal}
-        message={"Mass Air Flow (MAF) sensor measures the amount of air entering the engine. Proper MAF readings ensure accurate fuel delivery and engine performance. Abnormal values can indicate sensor problems or air intake issues."}
+        message={"Mass Air Flow (MAF) sensor measures the amount of air entering the engine. Proper MAF readings ensure accurate fuel delivery and engine performance. Abnormal values can indicate sensor problems or air intake issues. If the MAF sensor reports zero airflow readings consistently, it may suggest: Complete failure of the MAF sensor, possibly due to internal damage or sensor circuitry issues. Disconnection or severe damage to the MAF sensor wiring or connector."}
       />
     </div>
   );

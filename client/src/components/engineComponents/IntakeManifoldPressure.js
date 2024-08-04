@@ -122,7 +122,7 @@ const EngineIntakeComparison = ({ carId }) => {
       <Modal
         isOpen={isModalOpen}
         onClose={hideModal}
-        message={"Normal intake manifold pressure ranges between 20 and 100 kPa. Values outside this range can indicate leaks, sensor issues, or other engine problems."}
+        message={"Normal intake manifold pressure ranges between 20 and 100 kPa. Low intake manifold pressure could indicate a vacuum leak, while high pressure could indicate a restriction in the intake system."}
       />
     </div>
   );
