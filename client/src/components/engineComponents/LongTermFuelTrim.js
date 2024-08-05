@@ -10,8 +10,8 @@ const LongTermFuelTrim = () => {
         This section is under development. Please check back later for detailed information on long-term fuel trims.
       </p>
 
-      <p className="info-message">
-        Long Term Fuel Trim (LTFT) represents the cumulative adjustments made by the engine control unit (ECU) to maintain the optimal air-fuel ratio over a longer period. Unlike Short Term Fuel Trim, which reacts to immediate conditions, LTFT adjusts for longer-term changes in the engine’s performance.
+      <p style={{ fontSize: '1rem', color: '#1a1919', marginBottom: '15px' }}>
+        Long Term Trim (LTFT) represents the cumulative adjustments made by the engine control unit (ECU) to maintain the optimal air-fuel ratio over a longer period. Unlike Short Term Fuel Trim, which reacts to immediate conditions, LTFT adjusts for longer-term changes in the engine’s performance.
       </p>
       <ul className="info-list">
         <li><strong>What is LTFT?</strong> LTFT is the ECU's long-term adjustment to the air-fuel mixture based on historical data and trends.</li>

@@ -10,7 +10,7 @@ const ShortTermFuelTrim = () => {
         This section is under development. Please check back later for detailed information on short-term fuel trims.
       </p>
 
-      <p className="info-message">
+      <p style={{ fontSize: '1rem', color: '#1a1919', marginBottom: '15px' }}>
         Short Term Fuel Trim (STFT) is a measure of how much the engine control unit (ECU) is adjusting the fuel mixture in real-time. These adjustments are made based on various sensor inputs to ensure optimal engine performance and efficiency.
       </p>
       <ul className="info-list">

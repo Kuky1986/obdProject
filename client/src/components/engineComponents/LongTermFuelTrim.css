@@ -1,68 +1,68 @@
 /* Container styling */
 .long-term-fuel-trim-container {
-    background-color: #ffd700; /* Light background color */
-    color: #333; /* Dark text color */
-    padding: 20px;
-    text-align: center;
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    max-width: 600px;
-    margin: auto;
-  }
-  
-  /* Heading styling */
-  .heading {
-    font-size: 1.5rem;
-    color: #333; /* Dark text color */
-    margin-bottom: 15px;
-  }
-  
-  /* Placeholder message styling */
-  .placeholder-message {
-    font-size: 1rem;
-    color: #666; /* Grey text color */
-    margin-bottom: 20px; /* Add space below placeholder */
-  }
-  
-  /* Info message styling */
-  .info-message {
-    font-size: 1rem;
-    color: #444; /* Darker grey text color */
-    margin-bottom: 15px;
-  }
-  
-  /* List styling */
-  .info-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .info-list li {
-    font-size: 1rem;
-    color: #333; /* Dark text color */
-    margin-bottom: 10px;
-    text-align: left; /* Align text to the left */
-    padding: 0 20px; /* Add padding for better readability */
-  }
-  
-  .info-list li strong {
-    color: #222; /* Slightly darker color for labels */
-  }
-  
-  /* Contact info styling */
-  .contact-info {
-    font-size: 0.9rem;
-    color: #007bff; /* Link color */
-    margin-top: 20px;
-  }
-  
-  .contact-info a {
-    color: #007bff; /* Link color */
-    text-decoration: none;
-  }
-  
-  .contact-info a:hover {
-    text-decoration: underline; /* Underline on hover */
-  }
+  background-color: #ffd700; /* Light background color */
+  color: #333; /* Dark text color */
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  max-width: 600px;
+  margin: auto;
+}
+
+/* Heading styling */
+.heading {
+  font-size: 1.5rem;
+  color: #333; /* Dark text color */
+  margin-bottom: 15px;
+}
+
+/* Placeholder message styling */
+.placeholder-message {
+  font-size: 1rem;
+  color: #666; /* Grey text color */
+  margin-bottom: 20px; /* Add space below placeholder */
+}
+
+/* Info message styling */
+.info-message {
+  font-size: 1rem;
+  color: #1a1919; /* Darker grey text color */
+  margin-bottom: 15px;
+}
+
+/* List styling */
+.info-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.info-list li {
+  font-size: 1rem;
+  color: #333; /* Dark text color */
+  margin-bottom: 10px;
+  text-align: left; /* Align text to the left */
+  padding: 0 20px; /* Add padding for better readability */
+}
+
+.info-list li strong {
+  color: #222; /* Slightly darker color for labels */
+}
+
+/* Contact info styling */
+.contact-info {
+  font-size: 0.9rem;
+  color: #007bff; /* Link color */
+  margin-top: 20px;
+}
+
+.contact-info a {
+  color: #007bff; /* Link color */
+  text-decoration: none;
+}
+
+.contact-info a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
   

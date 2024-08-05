@@ -4,8 +4,8 @@
 .engine-health-container {
     background-color: #858484; /* Lighter background color */
     color: #ffd700; /* Text color consistent with other components */
-    padding: 20px;
     min-height: 100vh; /* Ensure the container covers at least the viewport height */
+    text-align: center;
   }
   
   /* Styling for heading */

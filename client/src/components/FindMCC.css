@@ -1,47 +1,53 @@
 /* Container styling */
 .find-mcc-container {
-    background-color: #858484; /* Lighter background color */
-    color: #ffd700; /* Text color */
-    padding: 20px;
+  background-color: #858484; /* Lighter background color */
+    color: #ffd700; /* Text color same as link hover color in Navbar */
     text-align: center; /* Center-align text */
     min-height: 100vh; /* Ensure the container covers at least the viewport height */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    max-width: 600px;
-    margin: auto;
-  }
-  
-  /* Heading styling */
-  h1 {
-    font-size: 2.5rem; /* Adjust font size as needed */
-    margin-bottom: 20px; /* Space below the heading */
-    color: #ffd700; /* Text color same as link hover color in Navbar */
-  }
-  
-  /* Info message styling */
-  .info-message {
-    font-size: 1.2rem; /* Adjust font size as needed */
-    line-height: 1.5; /* Line height for readability */
-    margin-bottom: 20px; /* Space below paragraphs */
-    color: #ffd700; /* Text color */
-  }
-  
-  /* Button styling */
-  .find-button {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 1rem;
-    color: #fff; /* Button text color */
-    background-color: #333; /* Button background color */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .find-button:hover {
-    background-color: #ffd700; /* Button hover background color */
-  }
+}
+
+/* Content styling */
+.find-mcc-content {
+  flex: 1; /* Allows the content to take up the remaining space */
+  padding: 20px;
+  text-align: center; /* Center-align text */
+  max-width: 800px; /* Limiting the maximum width */
+  margin: auto; /* Center horizontally */
+  background-color: #858484; /* Ensure background color is consistent */
+}
+
+/* Heading styling */
+h1 {
+  font-size: 2.5rem; /* Adjust font size as needed */
+  margin-bottom: 20px; /* Space below the heading */
+  color: #ffd700; /* Text color same as link hover color in Navbar */
+}
+
+/* Info message styling */
+.info-message {
+  font-size: 1.2rem; /* Adjust font size as needed */
+  line-height: 1.5; /* Line height for readability */
+  margin-bottom: 20px; /* Space below paragraphs */
+  color: #ffd700; /* Text color */
+}
+
+/* Button styling */
+.find-button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff; /* Button text color */
+  background-color: #333; /* Button background color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.find-button:hover {
+  background-color: #ffd700; /* Button hover background color */
+}
+
   
   
   

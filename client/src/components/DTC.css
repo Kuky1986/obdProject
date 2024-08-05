@@ -4,7 +4,6 @@
 .dtc-container {
   background-color: #858484; /* Lighter background color */
   color: #ffd700; /* Text color consistent with Home */
-  padding: 20px;
   text-align: center; /* Center-align text */
   min-height: 100vh; /* Ensure the container covers at least the viewport height */
 }
