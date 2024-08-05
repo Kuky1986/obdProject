@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './FuelLevel.css'; // Import the CSS file
 
 const FuelLevel = ({ carId }) => {
   const [scanDuration, setScanDuration] = useState(null);
@@ -22,11 +23,13 @@ const FuelLevel = ({ carId }) => {
   };
 
   return (
-    <div>
-      <button onClick={handleButtonClick}>Show Duration of The Scan for {carId}</button>
-      {error && <div>Error: {error}</div>}
+    <div className="fuel-level-container">
+      <button className="fuel-level-button" onClick={handleButtonClick}>
+        Show Duration of The Scan for {carId}
+      </button>
+      {error && <div className="error-message">Error: {error}</div>}
       {scanDuration !== null && !error && (
-        <div>
+        <div className="scan-duration-container">
           <h3>Duration of The Scan for {carId}:</h3>
           <p>{scanDuration}</p>
         </div>
@@ -36,6 +39,7 @@ const FuelLevel = ({ carId }) => {
 };
 
 export default FuelLevel;
+
 
 
 

@@ -37,7 +37,7 @@ const EngineHealth = () => {
         <button onClick={() => handleDisplayComponent('EngineCoolantTemperature')}>Display Engine Coolant Temperature</button>
         <button onClick={() => handleDisplayComponent('IntakeManifoldPressure')}>Display Intake Manifold Pressure</button>
         <button onClick={() => handleDisplayComponent('MassAirflowRate')}>Display Mass Airflow Rate</button>
-        <button onClick={() => handleDisplayComponent('FuelLevel')}>Display Fuel Level</button>
+        <button onClick={() => handleDisplayComponent('FuelLevel')}>Duration of car scan</button>
         <button onClick={() => handleDisplayComponent('ShortTermFuelTrim')}>Display Short Term Fuel Trim</button>
         <button onClick={() => handleDisplayComponent('LongTermFuelTrim')}>Display Long Term Fuel Trim</button>
       </div>

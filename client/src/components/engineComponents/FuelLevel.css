@@ -1,0 +1,53 @@
+/* Container styling */
+.fuel-level-container {
+    background-color: #858484; /* Light background color */
+    color: #ffd700; /* Dark text color */
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    max-width: 600px;
+    margin: auto;
+  }
+  
+  /* Button styling */
+  .fuel-level-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 5px; /* Add margin to space out buttons */
+  }
+  
+  .fuel-level-button:hover {
+    background-color: #ffd700; /* Hover background color */
+  }
+  
+  /* Error message styling */
+  .error-message {
+    color: #ffd700; /* Red color for errors */
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+  
+  /* Scan duration display styling */
+  .scan-duration-container {
+    margin-top: 20px;
+  }
+  
+  .scan-duration-container h3 {
+    font-size: 1.2rem;
+    color: #ffd700; /* Header color */
+  }
+  
+  .scan-duration-container p {
+    font-size: 1rem;
+    color: #fff; /* Text color for scan duration */
+  }
+  
+  
+  
