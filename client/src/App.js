@@ -4,6 +4,7 @@ import Data from './components/Data';
 import Home from './components/Home'; 
 import DTC from './components/DTC';
 import EngineHealth from './components/EngineHealth';
+import FindMCC from './components/FindMCC';
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Route path="/data" element={<Data />} />
         <Route path="/dtc" element={<DTC />} />
         <Route path="/engineHealth" element={<EngineHealth />} />
+        <Route path="/findMechanic" element={<FindMCC />} />
         {/* Add more routes for other pages/components */}
       </Routes>
     </Router>
